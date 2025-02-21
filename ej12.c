@@ -2,9 +2,9 @@
 #include <unistd.h>
 
 int main() {
-	for () {
+	for (int i = 0; i < 4; i++) {
 		fork();
 	}
-	printf();
+	printf("Proceso: PID = %d, PPID = %d\n", getpid(), getppid());
 	return 0;
 }

@@ -7,7 +7,6 @@ int main() {
     pid_t pid_hijo, pid_nieto, pid_bisnieto;
     clock_t start, end;
     double elapsed_time;
-    double elapsed_time_sec;
 
     // Guardar el tiempo antes del primer fork()
     start = clock();
@@ -21,17 +20,23 @@ int main() {
             pid_bisnieto = fork();
 
             if (pid_bisnieto == 0) {  // Proceso bisnieto
-                // Bisnieto: ejecutar un ciclo for de 1 millón de iteraciones
-                for (long i = 0; i < 1000000; i++);
+                // Bisnieto: ejecutar un ciclo for de 1 millón de iteraciones imprimiendo el índice
+                for (long i = 0; i < 1000000; i++) {
+                    printf("Iteración: %ld en bisnieto (PID: %d)\n", i, getpid());
+                }
             } else {  // Proceso nieto espera al bisnieto
                 wait(NULL);
                 // Nieto: ejecutar un ciclo for de 1 millón de iteraciones
-                for (long i = 0; i < 1000000; i++);
+                for (long i = 0; i < 1000000; i++) {
+                    printf("Iteración: %ld en nieto (PID: %d)\n", i, getpid());
+                }
             }
         } else {  // Proceso hijo espera al nieto
             wait(NULL);
             // Hijo: ejecutar un ciclo for de 1 millón de iteraciones
-            for (long i = 0; i < 1000000; i++);
+            for (long i = 0; i < 1000000; i++) {
+                printf("Iteración: %ld en hijo (PID: %d)\n", i, getpid());
+            }
         }
     } else {  // Proceso padre espera al hijo
         wait(NULL);
@@ -39,14 +44,11 @@ int main() {
         end = clock();
 
         // Calcular el tiempo transcurrido en segundos
-        elapsed_time = ((double)(end - start));
-        elapsed_time_sec = ((double)(end - start)) / CLOCKS_PER_SEC;
+        elapsed_time = ((double)(end - start)) / CLOCKS_PER_SEC;
 
         // Imprimir el resultado
-        printf("Tiempo de ejecución: %f \n", elapsed_time);
-        printf("Tiempo de ejecución: %f segundos\n", elapsed_time_sec);
+        printf("Tiempo de ejecución: %f segundos\n", elapsed_time);
     }
 
     return 0;
 }
-

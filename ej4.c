@@ -8,8 +8,10 @@ int main() {
     if (pid == 0) {  
         // Proceso hijo: Cuenta del 1 al 4,000,000
         for (long i = 1; i <= 4000000; i++) {
-            printf("Contando: %ld\n", i);
-            usleep(2);  // Pausa de 2 microsegundos por iteración
+            if (i = 1; i <= 4000000; i++) {
+                printf("Contando: %ld\n", i);
+                fflush(stdout);
+            }
         }
     } else if (pid > 0) {  
         // Proceso padre: Espera al hijo y luego entra en un bucle infinito

@@ -63,4 +63,13 @@ int main() {
         }
         printf("a: Puntero a memoria compartida: %p\n", shm_ptr);
 
-        memset(shm_ptr + (SHM_SIZE / 2), 'a', SHM_SIZE / 2);  // Llenar la otra 
+        memset(shm_ptr + (SHM_SIZE / 2), 'a', SHM_SIZE / 2);  // Llenar la otra mitad con 'a'
+        printf("a: Memoria compartida tiene: %s\n", (char *)shm_ptr);
+
+        munmap(shm_ptr, SHM_SIZE);
+        close(shm_fd);
+        shm_unlink(SHM_NAME);
+    }
+
+    return 0;
+}

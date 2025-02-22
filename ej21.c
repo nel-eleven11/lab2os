@@ -4,6 +4,7 @@
 int main() {
     clock_t start, end;
     double cpu_time_used;
+    double cpu_time_used_sec;
 
     // Guardar el tiempo antes de los ciclos
     start = clock();
@@ -17,10 +18,12 @@ int main() {
     end = clock();
 
     // Calcular el tiempo transcurrido en segundos
-    cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
+    cpu_time_used = ((double)(end - start));
+    cpu_time_used_sec = ((double)(end - start)) / CLOCKS_PER_SEC;
 
     // Imprimir el resultado
-    printf("Tiempo de ejecución: %f segundos\n", cpu_time_used);
+    printf("Tiempo de ejecución: %f \n", cpu_time_used);
+    printf("Tiempo de ejecución: %f segundos\n", cpu_time_used_sec);
 
     return 0;
 }

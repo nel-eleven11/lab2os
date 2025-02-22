@@ -8,10 +8,7 @@ int main() {
     if (pid == 0) {  
         // Proceso hijo: Cuenta del 1 al 4,000,000
         for (long i = 1; i <= 4000000; i++) {
-            if (i % 1000000 == 0) {
-                printf("Contando: %ld\n", i);
-                fflush(stdout);
-            }
+            printf("Contando: %ld\n", i);
         }
     } else if (pid > 0) {  
         // Proceso padre: Espera al hijo y luego entra en un bucle infinito

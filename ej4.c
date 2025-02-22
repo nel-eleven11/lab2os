@@ -1,17 +1,19 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 int main() {
     pid_t pid = fork();  // Crear un nuevo proceso
 
     if (pid == 0) {  
-        // Este es el proceso hijo
-        printf("Soy el proceso hijo (PID: %d)\n", getpid());
-    } else if (pid > 0) {  
-        // Este es el proceso padre
-        while (1) {
-            // Ciclo infinito en el proceso padre
+        // Proceso hijo: Cuenta del 1 al 4,000,000
+        for (long i = 1; i <= 4000000; i++) {
+            printf("Contando: %ld\n", i);
         }
+    } else if (pid > 0) {  
+        // Proceso padre: Espera al hijo y luego entra en un bucle infinito
+        wait(NULL);
+        while (1) { }
     } else {
         // Error al hacer fork()
         perror("Error al crear el proceso hijo");
@@ -20,4 +22,3 @@ int main() {
 
     return 0;
 }
-

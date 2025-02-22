@@ -7,6 +7,7 @@ int main() {
     pid_t pid_hijo, pid_nieto, pid_bisnieto;
     clock_t start, end;
     double elapsed_time;
+    double elapsed_time_sec;
 
     // Guardar el tiempo antes del primer fork()
     start = clock();
@@ -38,10 +39,12 @@ int main() {
         end = clock();
 
         // Calcular el tiempo transcurrido en segundos
-        elapsed_time = ((double)(end - start)) / CLOCKS_PER_SEC;
+        elapsed_time = ((double)(end - start));
+        elapsed_time_sec = ((double)(end - start)) / CLOCKS_PER_SEC;
 
         // Imprimir el resultado
-        printf("Tiempo de ejecución: %f segundos\n", elapsed_time);
+        printf("Tiempo de ejecución: %f \n", elapsed_time);
+        printf("Tiempo de ejecución: %f segundos\n", elapsed_time_sec);
     }
 
     return 0;
